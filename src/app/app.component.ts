@@ -11,8 +11,23 @@ export class AppComponent {
   isMenuOpen = true;
   contentMargin = 240;
 
-  task: string[] = [
-    'Clearning out my closet', 'Take out trash bins', 'Wash car', 'Tank up the motorcycles', 'Go for flight training'
+  items: string[] = [
+    'Vessels', 'Wet Grinder', 'Mat', 'Karanti', 'Badget'
+  ]
+  nivy: string[] = [
+    'pant', 'Tiffen', 'Toys', 'Wetpassport', 'chain'
+  ]
+  sankari: string[] = [
+    'broom', 'Poori', 'Nivy', 'Yuvi', 'charger'
+  ]
+  yuvi: string[] = [
+    'Dress', 'Passport', 'pics', 'printouts', 'Insuraenc'
+  ]
+  home: string[] = [
+    'Vessels', 'Wet Grinder', 'Mat', 'Karanti', 'Badget'
+  ]
+  settings: string[] = [
+    'yuvi', 'Nivy', 'Sakari', 'Home' 
   ]
 
   onToolbarMenuToggle() {
@@ -25,6 +40,22 @@ export class AppComponent {
       this.contentMargin = 240;
     }
   }
+
+  navItemClicked(event) {
+    //just added console.log which will display the event details in browser on click of the button.   
+    console.log(event.target.id);
+    this.title = event.target.id;
+    if("yuvi"==event.target.id)
+    this.items = this.yuvi;
+    else if("nivy"==event.target.id)
+    this.items = this.nivy;
+    else if("sankari"==event.target.id)
+    this.items = this.sankari;
+    else if("home"==event.target.id)
+    this.items = this.home;
+    else if("settings"==event.target.id)
+    this.items = this.settings;
+ }
   // sidenavEvents(str) {
   //   console.log(str);
   // }

@@ -6,7 +6,7 @@
   <span class="toolbar-spacer"></span>
   <mat-icon
     class="toolbar-icon"
-    matBadge="8"
+    matBadge="6"
     matBadgePosition="after"
     matBadgeColor="accent"
   >notifications</mat-icon>
@@ -34,50 +34,57 @@
           <mat-card-subtitle>Internal</mat-card-subtitle>
         </mat-card-header>
       </mat-card>
-      <mat-list-item>
-        <button 
-        class="menu-item"
+      <mat-list-item >
+        <button  id="nivy" (click) = "navItemClicked($event)"
+        class="menu-item"  
           mat-flat-button>
-          <mat-icon>baby_changing_station</mat-icon>
+          <mat-icon  id="nivy" (click) = "navItemClicked($event)" >baby_changing_station</mat-icon>
           Nivy</button>
       </mat-list-item>
 
       <mat-list-item>
-          <button 
-          class="menu-item"
+          <button  id ="sankari" (click) = "navItemClicked($event)"
+          class="menu-item"  
             mat-flat-button>
-            <mat-icon>pregnant_woman</mat-icon>
+            <mat-icon id ="sankari" (click) = "navItemClicked($event)">pregnant_woman</mat-icon>
             Sankari</button>
         </mat-list-item>
 
         <mat-list-item>
-            <button 
-            class="menu-item"
+            <button  id ="yuvi" (click) = "navItemClicked($event)" 
+            class="menu-item" 
               mat-flat-button>
-              <mat-icon>hail</mat-icon>
+              <mat-icon  id ="yuvi" (click) = "navItemClicked($event)">hail</mat-icon>
             Yuvi</button>
           </mat-list-item>
 
           <mat-list-item>
-            <button 
-            class="menu-item"
+            <button  id ="home" (click) = "navItemClicked($event)"
+            class="menu-item"  
               mat-flat-button>
-              <mat-icon>home</mat-icon>
+              <mat-icon  id ="home" (click) = "navItemClicked($event)">home</mat-icon>
             For Home</button>
           </mat-list-item>
-
+          <mat-list-item >
+            <button id ="settings" (click) = "navItemClicked($event)"
+            class="menu-item"  
+              mat-flat-button>
+              <mat-icon id ="settings" (click) = "navItemClicked($event)">settings</mat-icon>
+              Settings</button>
+          </mat-list-item>
     </mat-list>
   </mat-sidenav>
 
   <mat-sidenav-content
   [ngStyle]="{ 'margin-left.px': contentMargin }"
   >
-    <mat-selection-list class="dash-list">
-      <h3>TO DO</h3>
-      <mat-list-option *ngFor="let todo of task">
-        {{todo}}
-      </mat-list-option>
-    </mat-selection-list> 
+
+   <mat-selection-list class="dash-list">
+    <h3>Items Needed</h3>
+    <mat-list-option *ngFor="let item of items">
+      {{item}}
+    </mat-list-option>
+  </mat-selection-list> 
   </mat-sidenav-content>
 </mat-sidenav-container>
 <router-outlet></router-outlet>

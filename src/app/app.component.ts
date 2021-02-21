@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'AngularMaterialGettingStarted';
+  title = 'Purchase Status';
 
   isMenuOpen = true;
   contentMargin = 240;

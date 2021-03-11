@@ -1,3 +1,5 @@
+import { Items } from './model/items.model';
+import { HomeService } from './services/home.service';
 import { Component } from '@angular/core';
 
 @Component({
@@ -7,6 +9,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Purchase Status';
+  public allItems = [];
 
   isMenuOpen = true;
   contentMargin = 240;
@@ -59,4 +62,13 @@ export class AppComponent {
   // sidenavEvents(str) {
   //   console.log(str);
   // }
+  
+  constructor(private homeService: HomeService){}
+    ngOnInit() {
+      this.homeService.getItems().subscribe((data) => {
+         this.allItems = Array.from(Object.keys(data), k=>data[k]);
+         console.log(this.allItems.entries.name);
+      });
+   }
+  
 }

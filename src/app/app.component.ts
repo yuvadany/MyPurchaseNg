@@ -65,7 +65,7 @@ export class AppComponent {
   //   console.log(str);
   // }
   dataSource = new UserDataSource(this.homeService);
-  displayedColumns = ['id', 'item', 'status', 'needfor'];
+  displayedColumns = ['id', 'item', 'status', 'needFor'];
   constructor(private homeService: HomeService){}
     ngOnInit() {
       this.homeService.getItems().subscribe((data) => {

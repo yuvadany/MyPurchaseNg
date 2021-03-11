@@ -1,6 +1,8 @@
 import { Items } from './model/items.model';
 import { HomeService } from './services/home.service';
 import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
+import {DataSource} from '@angular/cdk/collections';
 
 @Component({
   selector: 'app-root',
@@ -62,13 +64,25 @@ export class AppComponent {
   // sidenavEvents(str) {
   //   console.log(str);
   // }
-  
+  dataSource = new UserDataSource(this.homeService);
+  displayedColumns = ['id', 'item', 'status', 'needfor'];
   constructor(private homeService: HomeService){}
     ngOnInit() {
       this.homeService.getItems().subscribe((data) => {
-         this.allItems = Array.from(Object.keys(data), k=>data[k]);
-         console.log(this.allItems.entries.name);
+         this.allItems = Array.from(Object.keys(data), k=>data[k]);         
+         console.log(this.allItems);
       });
    }
+  }
+   export class UserDataSource extends DataSource<any> {
+
+    constructor(private homeService: HomeService) {
+      super();
+    }
   
+    connect(): Observable<Items[]> {
+      return this.homeService.getItems();
+    }
+  
+    disconnect() {}
 }

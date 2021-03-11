@@ -9,12 +9,12 @@ import { Items } from '../model/items.model';
 })
 export class HomeService {
 
-  private serviceUrl = 'http://localhost:9988/v1/purchase/all';
+  private allItemsUrl = 'http://localhost:9988/v1/purchase/all';
   
   constructor(private http: HttpClient) { }
   
   getItems(): Observable<Items[]> {
-    return this.http.get<Items[]>(this.serviceUrl);
+    return this.http.get<Items[]>(this.allItemsUrl);
   }
 
 }

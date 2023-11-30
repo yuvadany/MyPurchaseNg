@@ -78,13 +78,29 @@
   <mat-sidenav-content
   [ngStyle]="{ 'margin-left.px': contentMargin }"
   >
-
-   <mat-selection-list class="dash-list">
-    <h3>Items Needed</h3>
-    <mat-list-option *ngFor="let item of items">
-      {{item}}
-    </mat-list-option>
-  </mat-selection-list> 
+  <h3>---Items Status ---- </h3>
+  <div>
+    <mat-table [dataSource]="dataSource">
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef> id </mat-header-cell>
+        <mat-cell *matCellDef="let items"> {{items.id}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="item">
+        <mat-header-cell *matHeaderCellDef> Item </mat-header-cell>
+        <mat-cell *matCellDef="let items"> {{items.item}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="needFor">
+        <mat-header-cell *matHeaderCellDef> needfor </mat-header-cell>
+        <mat-cell *matCellDef="let items"> {{items.needFor}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="status">
+        <mat-header-cell *matHeaderCellDef> status </mat-header-cell>
+        <mat-cell *matCellDef="let items"> {{items.status}} </mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
 <router-outlet></router-outlet>

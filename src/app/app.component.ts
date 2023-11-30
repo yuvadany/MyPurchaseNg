@@ -1,4 +1,8 @@
+import { Items } from './model/items.model';
+import { HomeService } from './services/home.service';
 import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
+import {DataSource} from '@angular/cdk/collections';
 
 @Component({
   selector: 'app-root',
@@ -7,6 +11,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Purchase Status';
+  public allItems = [];
 
   isMenuOpen = true;
   contentMargin = 240;
@@ -59,4 +64,25 @@ export class AppComponent {
   // sidenavEvents(str) {
   //   console.log(str);
   // }
+  dataSource = new UserDataSource(this.homeService);
+  displayedColumns = ['id', 'item', 'status', 'needFor'];
+  constructor(private homeService: HomeService){}
+    ngOnInit() {
+      this.homeService.getItems().subscribe((data) => {
+         this.allItems = Array.from(Object.keys(data), k=>data[k]);         
+         console.log(this.allItems);
+      });
+   }
+  }
+   export class UserDataSource extends DataSource<any> {
+
+    constructor(private homeService: HomeService) {
+      super();
+    }
+  
+    connect(): Observable<Items[]> {
+      return this.homeService.getItems();
+    }
+  
+    disconnect() {}
 }
